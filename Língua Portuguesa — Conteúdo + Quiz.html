@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Língua Portuguesa — Year 9 · Conteúdo + Quiz</title>
+<style>
+  :root {
+    --bg: #faf7f0;
+    --bg-elevated: #ffffff;
+    --ink: #2a2622;
+    --ink-soft: #5c564d;
+    --rule: #ddd4c2;
+    --navy: #1f3a52;
+    --navy-soft: #3d5a73;
+    --rust: #b1532b;
+    --chip-bg: #f0e8d6;
+    --ok-bg: #e3efe4;
+    --ok-border: #5f9a66;
+    --ok-ink: #26432a;
+    --bad-bg: #f6e5e1;
+    --bad-border: #c1664f;
+    --bad-ink: #6b2a1c;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1915; --bg-elevated: #23211c; --ink: #ece7dc; --ink-soft: #b4ab9b;
+      --rule: #3a362c; --navy: #9fc3dd; --navy-soft: #7fa8c6; --rust: #e08a5f;
+      --chip-bg: #2c291f;
+      --ok-bg: #203224; --ok-border: #3f6a44; --ok-ink: #bfe3c3;
+      --bad-bg: #352120; --bad-border: #8a4336; --bad-ink: #f0bdae;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1915; --bg-elevated: #23211c; --ink: #ece7dc; --ink-soft: #b4ab9b;
+    --rule: #3a362c; --navy: #9fc3dd; --navy-soft: #7fa8c6; --rust: #e08a5f;
+    --chip-bg: #2c291f;
+    --ok-bg: #203224; --ok-border: #3f6a44; --ok-ink: #bfe3c3;
+    --bad-bg: #352120; --bad-border: #8a4336; --bad-ink: #f0bdae;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  h1, h2, h3, .serif { font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif; }
+
+  header.masthead {
+    background: var(--navy); color: #f6f2e7;
+    padding: 2.4rem 1.5rem 2rem; position: relative; overflow: hidden;
+  }
+  header.masthead::after {
+    content: ""; position: absolute; right: -40px; top: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(246,242,231,0.08), transparent 70%);
+  }
+  .masthead-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .school-tag { font-size: 0.85rem; color: #cdd9e2; margin-bottom: 0.5rem; }
+  header.masthead h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0 0 0.3rem; font-weight: 600; }
+  header.masthead p.teacher { margin: 0; font-size: 0.98rem; color: #e3d9bf; }
+
+  nav.tabs {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; gap: 0; background: var(--bg-elevated);
+    border-bottom: 1px solid var(--rule);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  nav.tabs::before {
+    content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+    background: var(--bg-elevated); z-index: 10;
+  }
+  nav.tabs button {
+    flex: 1; border: none; background: transparent; color: var(--ink-soft);
+    font-size: 0.95rem; font-weight: 600; padding: 0.9rem 0.5rem; cursor: pointer;
+    border-bottom: 3px solid transparent; font-family: inherit;
+  }
+  nav.tabs button.active { color: var(--navy); border-bottom-color: var(--rust); }
+
+  main { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .view { display: none; }
+  .view.active { display: block; }
+
+  section.block {
+    background: var(--bg-elevated); border: 1px solid var(--rule);
+    border-radius: 10px; padding: 1.6rem 1.7rem; margin-bottom: 1.6rem;
+  }
+  h2.block-title {
+    font-size: 1.25rem; color: var(--navy); margin: 0 0 1rem; font-weight: 600;
+  }
+  h3.sub {
+    font-size: 1.02rem; color: var(--rust); margin: 1.3rem 0 0.5rem;
+  }
+  p { margin: 0.5rem 0; }
+  .example {
+    background: var(--chip-bg); border-radius: 8px; padding: 0.7rem 1rem;
+    margin: 0.6rem 0; font-size: 0.93rem; color: var(--ink-soft);
+  }
+  .example em { color: var(--ink); font-style: normal; font-weight: 600; }
+  table.pronominal {
+    width: 100%; border-collapse: collapse; margin-top: 0.8rem; font-size: 0.9rem;
+  }
+  table.pronominal th {
+    text-align: left; color: var(--navy); padding: 0.5rem 0.5rem;
+    border-bottom: 2px solid var(--rule);
+  }
+  table.pronominal td {
+    vertical-align: top; padding: 0.6rem 0.5rem; border-bottom: 1px solid var(--rule);
+    color: var(--ink-soft);
+  }
+  ul.clean { padding-left: 1.2rem; margin: 0.5rem 0; }
+  ul.clean li { margin-bottom: 0.3rem; }
+  .conj-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.6rem; margin-top: 0.6rem;
+  }
+  .conj-card {
+    background: var(--chip-bg); border-radius: 8px; padding: 0.7rem 0.9rem; font-size: 0.88rem;
+  }
+  .conj-card strong { color: var(--navy); display: block; margin-bottom: 0.2rem; font-size: 0.92rem; }
+
+  /* Quiz */
+  .quiz-head { display:flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }
+  .quiz-progress { font-size: 0.85rem; color: var(--ink-soft); }
+  .progress-bar {
+    height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; margin-bottom: 1.4rem;
+  }
+  .progress-bar > div { height: 100%; background: var(--rust); transition: width 0.3s ease; }
+
+  .q-card {
+    background: var(--bg-elevated); border: 1px solid var(--rule); border-radius: 10px;
+    padding: 1.5rem 1.6rem; margin-bottom: 1.2rem;
+  }
+  .q-prompt { font-weight: 600; margin-bottom: 1rem; font-size: 1.02rem; }
+  .q-options { display: flex; flex-direction: column; gap: 0.6rem; }
+  .q-option {
+    text-align: left; border: 1px solid var(--rule); background: var(--bg);
+    color: var(--ink); border-radius: 8px; padding: 0.7rem 0.9rem;
+    font-family: inherit; font-size: 0.95rem; cursor: pointer;
+  }
+  .q-option:hover:not([disabled]) { border-color: var(--navy-soft); }
+  .q-option.correct { background: var(--ok-bg); border-color: var(--ok-border); color: var(--ok-ink); }
+  .q-option.incorrect { background: var(--bad-bg); border-color: var(--bad-border); color: var(--bad-ink); }
+  .q-option[disabled] { cursor: default; }
+  .q-explain {
+    margin-top: 0.9rem; font-size: 0.92rem; padding: 0.7rem 0.9rem;
+    border-radius: 8px; background: var(--chip-bg); color: var(--ink-soft); display: none;
+  }
+  .q-explain.show { display: block; }
+
+  .quiz-nav { display: flex; justify-content: space-between; gap: 0.8rem; margin-top: 1rem; }
+  .btn {
+    border: none; border-radius: 8px; padding: 0.7rem 1.3rem; font-weight: 600;
+    font-family: inherit; font-size: 0.95rem; cursor: pointer; background: var(--navy); color: #fff;
+  }
+  .btn.secondary { background: transparent; color: var(--navy); border: 1px solid var(--rule); }
+  .btn[disabled] { opacity: 0.4; cursor: default; }
+
+  .result-card { text-align: center; padding: 2.4rem 1.6rem; }
+  .result-score { font-size: 2.6rem; font-weight: 700; color: var(--rust); font-family: Georgia, serif; }
+  .result-label { color: var(--ink-soft); margin-bottom: 1.4rem; }
+
+  footer { text-align: center; color: var(--ink-soft); font-size: 0.85rem; padding: 1rem 1.5rem 2.5rem; }
+
+  @media (max-width: 480px) {
+    section.block, .q-card { padding: 1.2rem 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="school-tag">Maple Bear Indaiatuba · Year 9</div>
+    <h1>Língua Portuguesa — Guia de Estudos</h1>
+    <p class="teacher">Ms. Ivana Tavares</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button id="tab-content" class="active" onclick="showView('content')">Conteúdo</button>
+  <button id="tab-quiz" onclick="showView('quiz')">Quiz</button>
+</nav>
+
+<main>
+
+  <!-- ===================== CONTENT VIEW ===================== -->
+  <div id="view-content" class="view active">
+
+    <section class="block">
+      <h2 class="block-title">1. Gêneros textuais: verbete, crônica e artigo de opinião</h2>
+
+      <h3 class="sub">Verbete</h3>
+      <p>É o texto que compõe um dicionário ou uma enciclopédia. Tem como finalidade <strong>informar</strong> o significado, a classe gramatical e, às vezes, a origem de uma palavra. É objetivo, direto e não expressa opinião.</p>
+      <div class="example">Exemplo: <em>Biblioteca</em> — substantivo feminino. 1. Lugar onde são organizados e disponibilizados livros para consulta ou empréstimo.</div>
+
+      <h3 class="sub">Crônica</h3>
+      <p>Gênero narrativo, geralmente curto, que comenta fatos do cotidiano com um olhar pessoal — muitas vezes com humor, ironia ou reflexão. Mistura narração e opinião, e costuma ser publicada em jornais e revistas.</p>
+
+      <h3 class="sub">Artigo de opinião</h3>
+      <p>Texto argumentativo em que o autor defende um ponto de vista sobre um tema, usando argumentos, dados e exemplos para convencer o leitor. Diferente do verbete, é <strong>subjetivo</strong> e pode conter marcas de opinião explícitas.</p>
+      <div class="example">Dica para identificar opinião: procure trechos com juízo de valor, previsões, recomendações ou avaliações do autor sobre o tema — não apenas fatos.</div>
+    </section>
+
+    <section class="block">
+      <h2 class="block-title">2. Orações subordinadas adverbiais</h2>
+      <p>São orações que funcionam como advérbio em relação à oração principal, indicando uma circunstância (tempo, causa, condição etc.). Cada tipo tem conjunções próprias que podem ser trocadas sem alterar o sentido.</p>
+
+      <div class="conj-grid">
+        <div class="conj-card"><strong>Temporal</strong> quando, assim que, enquanto, logo que, sempre que</div>
+        <div class="conj-card"><strong>Causal</strong> porque, já que, uma vez que, visto que, como</div>
+        <div class="conj-card"><strong>Condicional</strong> se, caso, contanto que, a menos que</div>
+        <div class="conj-card"><strong>Concessiva</strong> embora, ainda que, mesmo que, apesar de que</div>
+        <div class="conj-card"><strong>Final</strong> para que, a fim de que</div>
+        <div class="conj-card"><strong>Consecutiva</strong> de tal forma que, tanto que, tão... que</div>
+        <div class="conj-card"><strong>Conformativa</strong> conforme, segundo, de acordo com</div>
+        <div class="conj-card"><strong>Comparativa</strong> como, tal qual, mais... do que</div>
+        <div class="conj-card"><strong>Proporcional</strong> à medida que, à proporção que</div>
+      </div>
+
+      <div class="example">Exemplo: "<em>Quando os porquinhos abrirem a porta</em> (tempo) <em>para pegar a pizza</em> (finalidade), eu ataco!" (oração principal)</div>
+    </section>
+
+    <section class="block">
+      <h2 class="block-title">3. Orações reduzidas (infinitivo, gerúndio e particípio)</h2>
+      <p>Orações reduzidas não têm conjunção nem o verbo conjugado no modo indicativo/subjuntivo — o verbo aparece no infinitivo, gerúndio ou particípio. A oração <strong>desenvolvida</strong> é a forma completa, com conjunção e verbo conjugado.</p>
+
+      <ul class="clean">
+        <li><strong>Reduzida de infinitivo:</strong> "Ao chegar ao salão, pediu uma maquiagem leve." → desenvolvida: "Assim que chegou ao salão, pediu uma maquiagem leve."</li>
+        <li><strong>Reduzida de gerúndio:</strong> "Limpando o quarto, ganhará uma surpresa." → desenvolvida: "Caso limpe o quarto, ganhará uma surpresa."</li>
+        <li><strong>Reduzida de particípio:</strong> "Terminada a prova, os alunos saíram." → desenvolvida: "Quando a prova foi terminada, os alunos saíram."</li>
+      </ul>
+
+      <div class="example">Dica: para transformar uma reduzida em desenvolvida, identifique a circunstância (tempo, causa, condição...) e escolha a conjunção correspondente, conjugando o verbo normalmente.</div>
+    </section>
+
+    <section class="block">
+      <h2 class="block-title">4. Colocação pronominal</h2>
+      <p>Define onde o pronome oblíquo átono (me, te, se, o, a, lhe...) deve ficar em relação ao verbo.</p>
+      <table class="pronominal">
+        <thead><tr><th>Posição</th><th>Quando ocorre</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Próclise</strong> (antes do verbo)</td><td>Com palavras atrativas: advérbios, pronomes relativos, indefinidos e demonstrativos, palavras negativas, conjunções subordinativas e pronomes interrogativos.</td></tr>
+          <tr><td><strong>Mesóclise</strong> (no meio do verbo)</td><td>Com verbos no futuro do presente ou do pretérito, desde que não haja palavra atrativa antes.</td></tr>
+          <tr><td><strong>Ênclise</strong> (depois do verbo)</td><td>É a posição padrão quando não há atrativo — obrigatória após pausa (vírgula) e no início de frase o pronome não pode aparecer.</td></tr>
+        </tbody>
+      </table>
+      <div class="example">Exemplo: "Não <em>aqueça-me</em>" está errado — o "não" é palavra atrativa, então o correto é "Não <em>me</em> aqueça neste inverno."</div>
+    </section>
+
+    <p style="text-align:center; margin-top: 2rem;">
+      <button class="btn" onclick="showView('quiz')">Ir para o quiz →</button>
+    </p>
+  </div>
+
+  <!-- ===================== QUIZ VIEW ===================== -->
+  <div id="view-quiz" class="view">
+
+    <div id="quiz-active">
+      <div class="quiz-head">
+        <h2 class="block-title" style="margin:0;">Quiz de revisão</h2>
+        <span class="quiz-progress" id="progress-label">1 / 10</span>
+      </div>
+      <div class="progress-bar"><div id="progress-fill" style="width:10%"></div></div>
+
+      <div class="q-card" id="q-card"></div>
+
+      <div class="quiz-nav">
+        <button class="btn secondary" id="btn-prev" onclick="prevQuestion()">Anterior</button>
+        <button class="btn" id="btn-next" onclick="nextQuestion()" disabled>Próxima</button>
+      </div>
+    </div>
+
+    <div id="quiz-result" class="q-card result-card" style="display:none;">
+      <div class="result-score" id="result-score">0 / 10</div>
+      <div class="result-label">respostas corretas</div>
+      <button class="btn" onclick="restartQuiz()">Refazer o quiz</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>Maple Bear Indaiatuba · Year 9 · Língua Portuguesa</footer>
+
+<script>
+  function showView(name) {
+    document.getElementById('view-content').classList.toggle('active', name === 'content');
+    document.getElementById('view-quiz').classList.toggle('active', name === 'quiz');
+    document.getElementById('tab-content').classList.toggle('active', name === 'content');
+    document.getElementById('tab-quiz').classList.toggle('active', name === 'quiz');
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+
+  const questions = [
+    {
+      prompt: "Qual é a principal finalidade de um verbete?",
+      options: [
+        "Narrar um fato do cotidiano com opinião pessoal",
+        "Informar o significado e a classe gramatical de uma palavra",
+        "Defender um ponto de vista sobre um tema",
+        "Contar uma história de ficção"
+      ],
+      correct: 1,
+      explain: "O verbete é um texto de dicionário/enciclopédia: objetivo, serve para informar significado, classe gramatical e exemplo de uso de uma palavra."
+    },
+    {
+      prompt: "Em \"Quando os porquinhos abrirem a porta, eu ataco!\", a oração destacada expressa:",
+      options: ["Causa", "Condição", "Tempo", "Concessão"],
+      correct: 2,
+      explain: "\"Quando\" introduz uma oração subordinada adverbial temporal, indicando o momento da ação."
+    },
+    {
+      prompt: "Qual conjunção abaixo introduz uma oração subordinada adverbial causal?",
+      options: ["Embora", "Já que", "Contanto que", "Para que"],
+      correct: 1,
+      explain: "\"Já que\" indica causa, assim como \"porque\", \"uma vez que\" e \"visto que\"."
+    },
+    {
+      prompt: "\"Ao chegar ao salão de beleza, pediu uma maquiagem leve.\" Essa é uma oração subordinada adverbial:",
+      options: [
+        "Desenvolvida de tempo",
+        "Reduzida de gerúndio",
+        "Reduzida de infinitivo",
+        "Reduzida de particípio"
+      ],
+      correct: 2,
+      explain: "O verbo \"chegar\" está no infinitivo e não há conjunção — por isso é uma oração reduzida de infinitivo (equivalente a \"Assim que chegou...\")."
+    },
+    {
+      prompt: "\"Limpando o quarto, ganhará uma surpresa pelo esforço.\" Essa oração reduzida equivale, na forma desenvolvida, a:",
+      options: [
+        "Porque limpou o quarto, ganhará uma surpresa.",
+        "Caso limpe o quarto, ganhará uma surpresa.",
+        "Embora limpe o quarto, ganhará uma surpresa.",
+        "Quando limpar o quarto, ganhará uma surpresa."
+      ],
+      correct: 1,
+      explain: "O gerúndio aqui expressa condição — por isso a forma desenvolvida usa \"caso\", conjunção condicional."
+    },
+    {
+      prompt: "Qual frase está com a colocação pronominal de acordo com a norma culta?",
+      options: [
+        "Me aqueça neste inverno.",
+        "Não aqueça-me neste inverno.",
+        "Não me aqueça neste inverno.",
+        "Aqueça-me, não, neste inverno."
+      ],
+      correct: 2,
+      explain: "\"Não\" é palavra atrativa (negativa), por isso exige próclise: \"Não me aqueça...\". As outras opções iniciam a frase com pronome oblíquo ou colocam o pronome depois do verbo mesmo havendo atrativo."
+    },
+    {
+      prompt: "A mesóclise (pronome no meio do verbo) ocorre tipicamente com verbos em qual tempo, desde que não haja atrativo?",
+      options: [
+        "Pretérito perfeito",
+        "Presente do indicativo",
+        "Futuro do presente ou futuro do pretérito",
+        "Pretérito imperfeito"
+      ],
+      correct: 2,
+      explain: "A mesóclise é usada com verbos no futuro do presente (ex.: \"aquecer-me-á\") ou no futuro do pretérito, sem palavra atrativa antes do verbo."
+    },
+    {
+      prompt: "No trecho \"...enquanto chatbots resolvem problemas que antes exigiam atendentes especializados\", a oração destacada indica:",
+      options: ["Finalidade", "Tempo", "Comparação", "Consequência"],
+      correct: 1,
+      explain: "\"Enquanto\" é uma conjunção temporal, indicando simultaneidade entre as ações."
+    },
+    {
+      prompt: "O que diferencia um artigo de opinião de um verbete?",
+      options: [
+        "O artigo de opinião é sempre mais curto",
+        "O verbete defende um ponto de vista; o artigo de opinião apenas informa",
+        "O artigo de opinião é subjetivo e argumentativo; o verbete é objetivo e informativo",
+        "Não há diferença relevante entre os dois gêneros"
+      ],
+      correct: 2,
+      explain: "O artigo de opinião defende uma tese com argumentos (texto subjetivo), enquanto o verbete apenas informa o significado de uma palavra de forma objetiva."
+    },
+    {
+      prompt: "\"É preciso respeitar as pessoas.\" Transformando a oração reduzida em desenvolvida, temos:",
+      options: [
+        "É preciso que as pessoas sejam respeitadas.",
+        "É preciso respeitando as pessoas.",
+        "É preciso, respeitadas as pessoas.",
+        "É preciso que respeite as pessoas."
+      ],
+      correct: 0,
+      explain: "Na forma desenvolvida, usa-se a conjunção \"que\" e o verbo conjugado na voz passiva: \"que as pessoas sejam respeitadas\"."
+    }
+  ];
+
+  let current = 0;
+  let answers = new Array(questions.length).fill(null);
+
+  function renderQuestion() {
+    const q = questions[current];
+    const card = document.getElementById('q-card');
+    const chosen = answers[current];
+
+    let optsHtml = '';
+    q.options.forEach((opt, i) => {
+      let cls = 'q-option';
+      if (chosen !== null) {
+        if (i === q.correct) cls += ' correct';
+        else if (i === chosen) cls += ' incorrect';
+      }
+      optsHtml += `<button class="${cls}" ${chosen !== null ? 'disabled' : ''} onclick="selectOption(${i})">${opt}</button>`;
+    });
+
+    card.innerHTML = `
+      <div class="q-prompt">${current + 1}. ${q.prompt}</div>
+      <div class="q-options">${optsHtml}</div>
+      <div class="q-explain ${chosen !== null ? 'show' : ''}">${q.explain}</div>
+    `;
+
+    document.getElementById('progress-label').textContent = `${current + 1} / ${questions.length}`;
+    document.getElementById('progress-fill').style.width = `${((current + 1) / questions.length) * 100}%`;
+    document.getElementById('btn-prev').disabled = current === 0;
+    document.getElementById('btn-next').disabled = chosen === null;
+    document.getElementById('btn-next').textContent = current === questions.length - 1 ? 'Ver resultado' : 'Próxima';
+  }
+
+  function selectOption(i) {
+    if (answers[current] !== null) return;
+    answers[current] = i;
+    renderQuestion();
+  }
+
+  function nextQuestion() {
+    if (answers[current] === null) return;
+    if (current === questions.length - 1) {
+      showResult();
+    } else {
+      current++;
+      renderQuestion();
+    }
+  }
+
+  function prevQuestion() {
+    if (current === 0) return;
+    current--;
+    renderQuestion();
+  }
+
+  function showResult() {
+    const score = answers.reduce((acc, a, i) => acc + (a === questions[i].correct ? 1 : 0), 0);
+    document.getElementById('quiz-active').style.display = 'none';
+    document.getElementById('quiz-result').style.display = 'block';
+    document.getElementById('result-score').textContent = `${score} / ${questions.length}`;
+  }
+
+  function restartQuiz() {
+    current = 0;
+    answers = new Array(questions.length).fill(null);
+    document.getElementById('quiz-active').style.display = 'block';
+    document.getElementById('quiz-result').style.display = 'none';
+    renderQuestion();
+  }
+
+  renderQuestion();
+</script>
+
+</body>
+</html>
